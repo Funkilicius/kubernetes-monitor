@@ -121,9 +121,8 @@ data:
           target_label: kubernetes_pod_name
         metrics_path: /api/v1/namespaces/monitoring/pods
         params:
-        - name: "match[]"
-          value: '{__name__=~"container_cpu_usage_seconds_total"}'
-
+          match[]:
+            - '{__name__=~"container_cpu_usage_seconds_total"}'
       - job_name: 'k8-service-endpoints'
         kubernetes_sd_configs:
         - role: endpoints
